@@ -1,0 +1,5 @@
+<%= form_for @guess, url: game_guesses_path(@game) do |f| %>
+	<%= f.text_field :number %>
+
+	<%= f.submit %>
+<% end %>

@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+ <div class="notice"> <%= flash[:notice] %> </div>
+<% end %>
 
-<p>
-  <strong>Number:</strong>
-  <%= @game.number %>
-</p>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @game.completed %>
-</p>
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= form_for @game.guesses.build,
+			 url: game_guesses_path(@game) do |f| %>
+ 	<p> 
+  		<strong>Guess:</strong>
+  		<%= f.number_field :number %>
+  		<%= f.submit %>
+	</p>
+<% end %>

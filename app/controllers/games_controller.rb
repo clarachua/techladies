@@ -26,15 +26,13 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
 
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+    if @game.save
+      redirect_to game_path(@game)
+    else
+      render :new
     end
+
+    
   end
 
   # PATCH/PUT /games/1
